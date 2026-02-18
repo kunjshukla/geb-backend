@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: geb-whatsapp-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        value: admin123
+      - key: FRONTEND_URL
+        value: https://your-frontend.vercel.app
+      - key: WHATSAPP_PHONE_ID
+        sync: false
+      - key: WHATSAPP_TOKEN
+        sync: false
+      - key: WHATSAPP_VERIFY_TOKEN
+        value: geb_verify_token
